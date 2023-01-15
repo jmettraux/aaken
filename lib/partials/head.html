@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>${TITLE}</title>
+  <link href="normalize-8.0.1.css" rel="stylesheet" type="text/css" />
+  <link href="${NAME}.css" rel="stylesheet" type="text/css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <!-- meta name="viewport" content="width=device-width, initial-scale=1" /-->
+  <!-- <script src="${NAME}.js"></script> -->
+
+  <script>
+
+    window.clog = console.log;
+
+    var onDocumentReady = function(fev) {
+      if (document.readyState != 'loading') fev();
+      else document.addEventListener('DOMContentLoaded', fev);
+    };
+
+    var elt = function(start, sel) {
+      if ( ! sel) { sel = start; start = document; }
+      return start.querySelector(sel);
+    };
+    var elts = function(start, sel) {
+      if ( ! sel) { sel = start; start = document; }
+      return start.querySelectorAll(sel);
+    };
+  </script>
+</head>
+<body>
+

@@ -1,0 +1,34 @@
+---
+
+NAME: aaken
+NAME_: aaken
+NAME_CAP: Aaken
+NAME_UPCASE: AAKEN
+
+TITLE: Aaken
+SUBTITLE: Elements of Carolingian Fantasy
+
+to_html: lowdown -Thtml --html-no-skiphtml --html-no-escapehtml ${in} -o ${out}
+
+#to_pdf: wkhtmltopdf --disable-smart-shrinking ${in} ${out}
+to_pdf: chrome --headless --no-sandbox --print-to-pdf-no-header --print-to-pdf=${out} --no-margins --disable-gpu ${in}
+to_stuffed_pdf: qpdf --empty --pages ${in} ${blanks} -- ${out}
+to_stapled_pdf: qpdf --empty --pages ${in} ${pages} -- ${out}
+
+#to_ps: pdftops -duplex ${in} ${out}
+to_ps: pdftops ${in} ${out}
+to_ps2: psnup -2 ${in} ${out}
+
+to_ps_a5: psnup -PA4 -pA5 ${in} ${out}
+to_pdf_a5: ps2pdf -dDEVICEWIDTHPOINTS=420 -dDEVICEHEIGHTPOINTS=595 -dFIXEDMEDIA -dPDFFitPage ${in} ${out}
+
+pdfinfo: pdfinfo ${in}
+
+srcsha: cat src/*.md | sha1
+
+author: Jehan Mestral — https://weaver.skepti.ch
+url: https://github.com/jmettraux/aaken
+
+license: CC BY-SA 4.0
+license_url: https://creativecommons.org/licenses/by-sa/4.0/
+
