@@ -104,12 +104,12 @@ def make_html
     i = m[1].to_i
     t = m[2].gsub(/_/, ' ')
       #
-    h = {
+    h = CONFIG_CAP.merge(
       GITBRA: gitbra, GITSHA: gitsha, GITURL: giturl, GITTAG: gittag,
       WEBURL: weburl, SRCSHA: srcsha, PRINTED: printed,
       PATH: path, PAGE: i,
       TITLE: t, TITLE_: m[2],
-      EVEN: i % 2 == 0 ? :even : :odd }
+      EVEN: i % 2 == 0 ? :even : :odd)
 
     tmp = "out/tmp/pd#{m[1]}__#{m[2]}.md"
     tmp2 = "out/tmp/pht#{m[1]}__#{m[2]}.html"

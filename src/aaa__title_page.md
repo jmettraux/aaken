@@ -7,7 +7,7 @@
 &nbsp;
 : Definition
 
-Aachen
+${NAME_CAP}
 : is a set of tabletop role playing rules.
 
 <hr/>

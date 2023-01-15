@@ -4,14 +4,14 @@ require 'yaml'
 require 'rexml/document'
 
 
-CONFIG =
-  YAML.load_file('Config.yaml')
-    .inject({}) { |h, (k, v)|
-      #h[k] = v
-      h[k.to_sym] = v
-      h }
-#pp CONFIG
-
+CONFIG = YAML.load_file('Config.yaml')
+  .inject({}) { |h, (k, v)|
+    h[k.to_sym] = v
+    h }
+CONFIG_CAP = CONFIG
+  .inject({}) { |h, (k, v)|
+    h[k.upcase.to_sym] = v
+    h }
 
 Dir[File.join(__dir__, '*.rb')]
   .each do |pa|
