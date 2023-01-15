@@ -12,12 +12,12 @@ Aaken is a TTRPG ruleset.
 
 ## dependencies
 
-* [Chrome](https://www.google.com/chrome/) 90.0.x
-* [lowdown](https://kristaps.bsd.lv/lowdown/) 0.8.3
-* [qpdf](http://qpdf.sourceforge.net/files/qpdf-manual.htm) 10.3.1
-* [ruby](https://www.ruby-lang.org/en/) 2.x
-* [make](https://en.wikipedia.org/wiki/Make_(software))
-* [poppler](https://poppler.freedesktop.org/) for pdftops
+* [Chrome](https://www.google.com/chrome/) 105.0.x
+* [lowdown](https://kristaps.bsd.lv/lowdown/) 1.0.0
+* [qpdf](http://qpdf.sourceforge.net/files/qpdf-manual.htm) 11.1.0
+* [ruby](https://www.ruby-lang.org/en/) 3.x
+* [make](https://en.wikipedia.org/wiki/Make_(software)) BSD
+* [poppler](https://poppler.freedesktop.org/) 21.12.0p0 for pdftops
 
 
 ## license
