@@ -1,5 +1,5 @@
 
-# aachen
+# aaken
 
 Aaken is a TTRPG ruleset.
 
