@@ -50,29 +50,31 @@ class Character
 #PP.pp(@h, $stderr)
   end
   def method_missing(k)
+$stderr.puts [ :mm, k ].inspect
     if m = k.to_s.match(/^(.+)(_[a-z]+)$/)
       send("get#{m[2]}", m[1].to_sym)
     else
-      get(k)
+      get_ac(k)
     end
   end
-  def body; meanup(str_tc, con_tc, dex_tc).to_s; end
-  def soul; meanup(int_tc, wis_tc, cha_tc).to_s; end
-  def physical; meanup(str_tc, con_tc).to_s; end
-  def evasion; meanup(dex_tc, int_tc).to_s; end
-  def mental; meanup(wis_tc, cha_tc).to_s; end
-  def learning; meanup(int_tc, wis_tc).to_s; end
-  def impulse; meanup(dex_tc, wis_tc).to_s; end
-  def initiative; meandown(dex, wis).to_s; end
-  def all; meanup(str_tc, con_tc, dex_tc, int_tc, wis_tc, cha_tc).to_s; end
-  def get(k); geti(k).to_s; end
+  #def body; meanup(str_tc, con_tc, dex_tc).to_s; end
+  #def soul; meanup(int_tc, wis_tc, cha_tc).to_s; end
+  #def physical; meanup(str_tc, con_tc).to_s; end
+  #def evasion; meanup(dex_tc, int_tc).to_s; end
+  #def mental; meanup(wis_tc, cha_tc).to_s; end
+  #def learning; meanup(int_tc, wis_tc).to_s; end
+  #def impulse; meanup(dex_tc, wis_tc).to_s; end
+  ##def initiative; meandown(dex, wis).to_s; end
+  #def all; meanup(str_tc, con_tc, dex_tc, int_tc, wis_tc, cha_tc).to_s; end
+  def get(k); get_ac(k).to_s; end
   def configurations; @h[:configurations]; end
   def knows?(n); @h[:spells] && @h[:spells].include?(n.to_s); end
-  def base_ac; @h[:base_ac]; end
+  #def base_ac; @h[:base_ac]; end
   protected
-  def geti(k); @h[k.to_s.downcase.to_sym]; end
-  def get_tc(k); (21 - @h[k.to_s.downcase.to_sym]).to_s rescue ''; end
-  def get_dc(k); i = send(k).to_i; i > 0 ? (21 - i).to_s : ''; end
+  #def geti(k); @h[k.to_s.downcase.to_sym]; end
+  #def get_oc(k); (21 - @h[k.to_s.downcase.to_sym]).to_s rescue ''; end
+  #def get_ac(k); i = send(k).to_i; i > 0 ? (21 - i).to_s : ''; end
+  def get_ac(k); @h[k.to_s.downcase.to_sym]; end
   def meanup(*args)
     geti(:str) ?
     (args.inject(0.0) { |r, a| r + a.to_f } / args.length).ceil :
@@ -295,10 +297,22 @@ style = %{
 
   .ability-label {
     justify-self: left;
+    position: relative;
+    left: -0.49em;
+    font-size: 84%;
+  }
+  .save-label {
+    justify-self: left;
+    position: relative;
+    left: -0.49em;
+    font-size: 84%;
+  }
+  /*
+  .ability-label {
+    justify-self: left;
     grid-row-end: span 2;
     margin-left: 0.4rem;
   }
-
   .save-label {
     padding-left: 0.1rem;
     justify-self: center;
@@ -306,6 +320,7 @@ style = %{
     font-size: 70%;
     grid-row-end: span 2;
   }
+  */
   .explanation-label {
     color: grey;
     padding-left: 0.1rem;
@@ -356,8 +371,9 @@ position: relative;
     width: #{hs.circle_side};
     height: #{hs.circle_side};
     position: absolute;
-    transform: scale(0.6, 0.85) rotate(45deg);
+    transform: scale(0.7, 0.9) rotate(45deg);
   }
+  /*
   .ability-diamond:nth-child(3n) .dia {
     left: 0.42rem;
   }
@@ -370,6 +386,7 @@ position: relative;
   .ability-diamond:nth-child(3n+1) .d {
     left: 0.6rem;
   }
+  */
   .ability-circle {
     width: #{hs.circle_side};
     height: #{hs.circle_side};
@@ -379,11 +396,15 @@ position: relative;
     z-index: 10;
     grid-row-end: span 2;
   }
-  .ability-circle:nth-child(3n) {
-    left: 0.8rem;
-  }
-  .ability-circle:nth-child(3n+2) {
-    left: 0.4rem;
+  .ability-circle .dia {
+    position: absolute;
+    border: 7px solid grey;
+    width: 2.4rem;
+    height: 2.4rem;
+    transform: scale(0.65, 0.95) rotate(45deg);
+    top: -0.40rem;
+    left: -1.20rem;
+    background-color: white;
   }
 
   .save-circle {
@@ -400,9 +421,9 @@ position: relative;
     border: 7px solid lightgrey;
     width: 2.4rem;
     height: 2.4rem;
-    transform: scale(0.6, 0.85) rotate(45deg);
-    top: -1.6rem;
-    left: -0.5rem;
+    transform: scale(0.65, 0.95) rotate(45deg);
+    top: -0.40rem;
+    left: -1.20rem;
     background-color: white;
   }
 
@@ -681,7 +702,7 @@ position: relative;
   .bold { font-weight: bold; }
   span.mean { font-size: 90%; }
 
-  table.dctc {
+  table.acoc {
     font-size: 9pt;
     line-height: 0.8;
     color: darkgrey;
@@ -690,23 +711,23 @@ position: relative;
     top: 1.55rem;
     border-collapse: collapse;
   }
-  table.dctc .l {
+  table.acoc .l {
     text-align: right;
   }
-  /*table.dctc tr:nth-child(1) { border-bottom: 1px solid lightgrey; }*/
-  table.dctc tr:nth-child(5) {
+  /*table.acoc tr:nth-child(1) { border-bottom: 1px solid lightgrey; }*/
+  table.acoc tr:nth-child(5) {
     border-bottom: 1px solid lightgrey;
   }
-  table.dctc tr:nth-child(6) td {
+  table.acoc tr:nth-child(6) td {
     padding-top: 0.05rem;
   }
-  /*table.dctc tr:last-child { border-top: 1px solid lightgrey; }*/
-  table.dctc td {
+  /*table.acoc tr:last-child { border-top: 1px solid lightgrey; }*/
+  table.acoc td {
     padding-top: 0.02rem;
     padding-left: 0;
     padding-right: 0;
   }
-  table.dctc td.c {
+  table.acoc td.c {
     padding-left: 0.2rem;
     padding-right: 0.1rem;
   }
@@ -795,8 +816,8 @@ def img(*args); make(:img, *args); end
 
 puts %{
 <div class="page">
-  <table class="dctc">
-    <tr><td class="l">DC</td><td class="c">⇌</td><td class="r">TC</td></tr>
+  <table class="acoc">
+    <tr><td class="l">AC</td><td class="c">⇌</td><td class="r">OC</td></tr>
     <tr><td class="l"> 3</td><td class="c"> </td><td class="r">18</td></tr>
     <tr><td class="l"> 4</td><td class="c"> </td><td class="r">17</td></tr>
     <tr><td class="l"> 5</td><td class="c"> </td><td class="r">16</td></tr>
@@ -805,7 +826,7 @@ puts %{
     <tr><td class="l"> 8</td><td class="c"> </td><td class="r">13</td></tr>
     <tr><td class="l"> 9</td><td class="c"> </td><td class="r">12</td></tr>
     <tr><td class="l">10</td><td class="c"> </td><td class="r">11</td></tr>
-    <tr><td class="l">TC</td><td class="c">⇌</td><td class="r">DC</td></tr>
+    <tr><td class="l">OC</td><td class="c">⇌</td><td class="r">AC</td></tr>
   </table>
   <div class="page-grid">
 }
@@ -817,95 +838,191 @@ div('.left.subgrid', 1, 1) do
 
   div('.ability-grid', 2, 1) do
 
-    div('.a-label', 1, 1, '3d6')
-    div('.a-label', 3, 1, 'Abi TCs')
-    div('.a-label', 4, 1, 'circles are TCs / diamonds are DCs', 5)
-    #div('.a-label', 10, 1, 'DEX<span class="mean">×</span>WIS')
+    x = 1
 
-    div('.a-label', 1, 14, 'Abi DC')
-    div('.a-label', 3, 14, '21 - Abi DC', 2, { style: 'justify-self: left;' })
-    div('.a-label', 4, 14, 'DC = 21 - TC and TC = 21 - DC', 5)
-
-    div('.ability-bground', 1, 2)
-    div('.ability-bground', 1, 4)
-    div('.ability-bground', 1, 6)
-    div('.ability-bground', 1, 8)
-    div('.ability-bground', 1, 10)
-    div('.ability-bground', 1, 12)
-
-    %w[ str con dex int wis cha ].each_with_index do |abi, ai|
-      dc = abi + '_dc'
-      div('.ability-diamond', 1, (ai + 1) * 2) {
-        div('.dia')
-        span('.d.ability-dc', { 'data-key' => dc }, character.send(abi)) }
-    end
-
-    div('.ability-label', 2, 2, '<b>STR</b>ength')
-    div('.ability-label', 2, 4, '<b>CON</b>stitution')
-    div('.ability-label', 2, 6, '<b>DEX</b>terity')
-    div('.ability-label', 2, 8, '<b>INT</b>elligence')
-    div('.ability-label', 2, 10, '<b>WIS</b>dom')
-    div('.ability-label', 2, 12, '<b>CHA</b>risma')
-
-    %w[ str con dex int wis cha ].each_with_index do |abi, ai|
-      tc = abi + '_tc'
-      div('.ability-circle', 3, (ai + 1) * 2) {
-        span('.d.ability-tc', { 'data-key' => tc }, character.send(tc)) }
-    end
-
-    div('.save-circle', 4, 4) {
-      span('.d', { 'data-key' => 'body_tc' }, character.body)
+    div('.ability-circle', x, 1) {
+      span('.d', { 'data-key' => 'strength_oc' }, character.strength)
       div('.dia')
-      span('.d', { 'data-key' => 'body_dc' }, character.body_dc) }
-    div('.save-circle', 4, 10) {
-      span('.d', { 'data-key' => 'soul_tc' }, character.soul)
-      div('.dia')
-      span('.d', { 'data-key' => 'soul_dc' }, character.soul_dc) }
-    div('.save-label', 4, 6, 'Body')
-    div('.save-label', 4, 12, 'Soul')
+      span('.d', { 'data-key' => 'strength_ac' }, character.strength_ac) }
+    div('.ability-label', x + 1, 1, '<b>STR</b>ength')
 
-    div('.save-circle', 5, 3) {
-      span('.d', { 'data-key' => 'physical_tc' }, character.physical)
+    div('.save-circle', x, 4) {
+      span('.d', { 'data-key' => 'coordination_oc' }, character.coordination)
       div('.dia')
-      span('.d', { 'data-key' => 'physical_dc' }, character.physical_dc) }
-    div('.save-circle', 5, 7) {
-      span('.d', { 'data-key' => 'evasion_tc' }, character.evasion)
-      div('.dia')
-      span('.d', { 'data-key' => 'evasion_dc' }, character.evasion_dc) }
-    div('.save-circle', 5, 11) {
-      span('.d', { 'data-key' => 'mental_tc' }, character.mental)
-      div('.dia')
-      span('.d', { 'data-key' => 'mental_dc' }, character.mental_dc) }
-    div('.save-label', 5, 5, 'Physical')
-    div('.save-label', 5, 9, 'Evasion')
-    div('.save-label', 5, 13, 'Mental')
+      span('.d', { 'data-key' => 'coordination_ac' }, character.coordination_ac) }
+    div('.save-label', x + 1, 4, 'COOrdination')
 
-    div('.save-circle', 6, 9) {
-      span('.d', { 'data-key' => 'learning_tc' }, character.learning)
+    div('.ability-circle', x, 7) {
+      span('.d', { 'data-key' => 'dexterity_oc' }, character.dexterity)
       div('.dia')
-      span('.d', { 'data-key' => 'learning_dc' }, character.learning_dc) }
-    div('.save-label', 6, 11, 'Learning')
+      span('.d', { 'data-key' => 'dexterity_ac' }, character.dexterity_ac) }
+    div('.ability-label', x + 1, 7, '<b>DEX</b>terity')
 
-    div('.initiative', 7, 1, 'INI modifier<br/>is Impulse DC →', 1, 7)
-
-    div('.save-circle', 7, 8) {
-      span('.d', { 'data-key' => 'impulse_tc' }, character.impulse)
+    div('.save-circle', x, 10) {
+      span('.d', { 'data-key' => 'impulse_oc' }, character.impulse)
       div('.dia')
-      span('.d', { 'data-key' => 'impulse_dc' }, character.impulse_dc) }
-    div('.save-label', 7, 10, 'Impulse')
+      span('.d', { 'data-key' => 'impulse_ac' }, character.impulse_ac) }
+    div('.save-label', x + 1, 10, 'IMPulse')
 
-    div('.save-circle', 8, 7) {
-      span('.d', { 'data-key' => 'all_tc' }, character.all)
+    div('.ability-circle', x, 13) {
+      span('.d', { 'data-key' => 'wisdom_oc' }, character.wisdom)
       div('.dia')
-      span('.d', { 'data-key' => 'all_dc' }, character.all_dc) }
-    div('.save-label.grey', 8, 9, 'all')
+      span('.d', { 'data-key' => 'wisdom_ac' }, character.wisdom_ac) }
+    div('.ability-label', x + 1, 13, '<b>WIS</b>dom')
 
-    div('.save-circle.explanation', 8, 12) {
-      span('.d', 'TC')
+    x = 3
+
+    div('.save-circle', x, 1) {
+      span('.d', { 'data-key' => 'physical_oc' }, character.physical)
       div('.dia')
-      span('.d', 'DC') }
-    div('.explanation-label', 6, 11, 'defend', 2)
-    div('.explanation-label', 6, 12, 'transcend', 2)
+      span('.d', { 'data-key' => 'physical_ac' }, character.physical_ac) }
+    div('.save-label', x + 1, 1, 'PHYsical')
+
+    div('.save-circle', x, 4) {
+      span('.d', { 'data-key' => 'fortitude_oc' }, character.fortitude)
+      div('.dia')
+      span('.d', { 'data-key' => 'fortitude_ac' }, character.fortitude_ac) }
+    div('.save-label', x + 1, 4, 'FORtitude')
+
+    div('.save-circle', x, 7) {
+      span('.d', { 'data-key' => 'evasion_oc' }, character.evasion)
+      div('.dia')
+      span('.d', { 'data-key' => 'evasion_ac' }, character.evasion_ac) }
+    div('.save-label', x + 1, 7, 'EVAsion')
+
+    div('.save-circle', x, 10) {
+      span('.d', { 'data-key' => 'learning_oc' }, character.learning)
+      div('.dia')
+      span('.d', { 'data-key' => 'learning_ac' }, character.learning_ac) }
+    div('.save-label', x + 1, 10, 'LEArning')
+
+    div('.save-circle', x, 13) {
+      span('.d', { 'data-key' => 'mental_oc' }, character.mental)
+      div('.dia')
+      span('.d', { 'data-key' => 'mental_ac' }, character.mental_ac) }
+    div('.save-label', x + 1, 13, 'MENtal')
+
+    x = 5
+
+    div('.ability-circle', x, 1) {
+      span('.d', { 'data-key' => 'strength_oc' }, character.strength)
+      div('.dia')
+      span('.d', { 'data-key' => 'strength_ac' }, character.strength_ac) }
+    div('.ability-label', x + 1, 1, '<b>STR</b>ength')
+
+    #div('.save-circle', x, 4) {
+    #  span('.d', { 'data-key' => 'coordination_oc' }, character.coordination)
+    #  div('.dia')
+    #  span('.d', { 'data-key' => 'coordination_ac' }, character.coordination_ac) }
+    #div('.save-label', x + 1, 4, 'COOrdination')
+
+    div('.ability-circle', x, 7) {
+      span('.d', { 'data-key' => 'dexterity_oc' }, character.dexterity)
+      div('.dia')
+      span('.d', { 'data-key' => 'dexterity_ac' }, character.dexterity_ac) }
+    div('.ability-label', x + 1, 7, '<b>DEX</b>terity')
+
+    #div('.save-circle', x, 10) {
+    #  span('.d', { 'data-key' => 'impulse_oc' }, character.impulse)
+    #  div('.dia')
+    #  span('.d', { 'data-key' => 'impulse_ac' }, character.impulse_ac) }
+    #div('.save-label', x + 1, 10, 'IMPulse')
+
+    div('.ability-circle', x, 13) {
+      span('.d', { 'data-key' => 'wisdom_oc' }, character.wisdom)
+      div('.dia')
+      span('.d', { 'data-key' => 'wisdom_ac' }, character.wisdom_ac) }
+    div('.ability-label', x + 1, 13, '<b>WIS</b>dom')
+
+#    div('.a-label', 1, 1, '3d6')
+#    div('.a-label', 3, 1, 'Abi TCs')
+#    #div('.a-label', 4, 1, 'circles are TCs / diamonds are DCs', 5)
+#    #div('.a-label', 10, 1, 'DEX<span class="mean">×</span>WIS')
+#
+#    div('.a-label', 1, 14, 'Abi DC')
+#    div('.a-label', 3, 14, '21 - Abi DC', 2, { style: 'justify-self: left;' })
+#    div('.a-label', 4, 14, 'DC = 21 - TC and TC = 21 - DC', 5)
+#
+#    div('.ability-bground', 1, 2)
+#    div('.ability-bground', 1, 4)
+#    div('.ability-bground', 1, 6)
+#    div('.ability-bground', 1, 8)
+#    div('.ability-bground', 1, 10)
+#    div('.ability-bground', 1, 12)
+#
+#    %w[ str con dex int wis cha ].each_with_index do |abi, ai|
+#      dc = abi + '_dc'
+#      div('.ability-diamond', 1, (ai + 1) * 2) {
+#        div('.dia')
+#        span('.d.ability-dc', { 'data-key' => dc }, character.send(abi)) }
+#    end
+#
+#    div('.ability-label', 2, 2, '<b>STR</b>ength')
+#    div('.ability-label', 2, 4, '<b>CON</b>stitution')
+#    div('.ability-label', 2, 6, '<b>DEX</b>terity')
+#    div('.ability-label', 2, 8, '<b>INT</b>elligence')
+#    div('.ability-label', 2, 10, '<b>WIS</b>dom')
+#    div('.ability-label', 2, 12, '<b>CHA</b>risma')
+#
+#    %w[ str con dex int wis cha ].each_with_index do |abi, ai|
+#      tc = abi + '_tc'
+#      div('.ability-circle', 3, (ai + 1) * 2) {
+#        span('.d.ability-tc', { 'data-key' => tc }, character.send(tc)) }
+#    end
+#
+#    div('.save-circle', 4, 4) {
+#      span('.d', { 'data-key' => 'body_tc' }, character.body)
+#      div('.dia')
+#      span('.d', { 'data-key' => 'body_dc' }, character.body_dc) }
+#    div('.save-circle', 4, 10) {
+#      span('.d', { 'data-key' => 'soul_tc' }, character.soul)
+#      div('.dia')
+#      span('.d', { 'data-key' => 'soul_dc' }, character.soul_dc) }
+#    div('.save-label', 4, 6, 'Body')
+#    div('.save-label', 4, 12, 'Soul')
+#
+#    div('.save-circle', 5, 3) {
+#      span('.d', { 'data-key' => 'physical_tc' }, character.physical)
+#      div('.dia')
+#      span('.d', { 'data-key' => 'physical_dc' }, character.physical_dc) }
+#    div('.save-circle', 5, 7) {
+#      span('.d', { 'data-key' => 'evasion_tc' }, character.evasion)
+#      div('.dia')
+#      span('.d', { 'data-key' => 'evasion_dc' }, character.evasion_dc) }
+#    div('.save-circle', 5, 11) {
+#      span('.d', { 'data-key' => 'mental_tc' }, character.mental)
+#      div('.dia')
+#      span('.d', { 'data-key' => 'mental_dc' }, character.mental_dc) }
+#    div('.save-label', 5, 5, 'Physical')
+#    div('.save-label', 5, 9, 'Evasion')
+#    div('.save-label', 5, 13, 'Mental')
+#
+#    div('.save-circle', 6, 9) {
+#      span('.d', { 'data-key' => 'learning_tc' }, character.learning)
+#      div('.dia')
+#      span('.d', { 'data-key' => 'learning_dc' }, character.learning_dc) }
+#    div('.save-label', 6, 11, 'Learning')
+#
+#    div('.initiative', 7, 1, 'INI modifier<br/>is Impulse DC →', 1, 7)
+#
+#    div('.save-circle', 7, 8) {
+#      span('.d', { 'data-key' => 'impulse_tc' }, character.impulse)
+#      div('.dia')
+#      span('.d', { 'data-key' => 'impulse_dc' }, character.impulse_dc) }
+#    div('.save-label', 7, 10, 'Impulse')
+#
+#    div('.save-circle', 8, 7) {
+#      span('.d', { 'data-key' => 'all_tc' }, character.all)
+#      div('.dia')
+#      span('.d', { 'data-key' => 'all_dc' }, character.all_dc) }
+#    div('.save-label.grey', 8, 9, 'all')
+
+#    div('.save-circle.explanation', 8, 12) {
+#      span('.d', 'OC')
+#      div('.dia')
+#      span('.d', 'AC') }
+#    div('.explanation-label', 6, 11, 'Ability Class', 2)
+#    div('.explanation-label', 6, 12, 'Over Class', 2)
   end
 
   div('.skill-grid', 2, 2) do
