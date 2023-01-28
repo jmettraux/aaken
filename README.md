@@ -24,7 +24,7 @@ Aaken is a TTRPG ruleset.
 
 This work is inspired by Kevin Crawford [Stars Without Number](https://www.drivethrurpg.com/product/226996/Stars-Without-Number-Revised-Edition) and [Wolves of God](https://www.drivethrurpg.com/product/308470/Wolves-of-God-Adventures-in-Dark-Ages-England), and also John Grümph [Gallant & Bold](https://www.drivethrurpg.com/product/316192/Gallant--Bold).
 
-CC BY-SA 4.0
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 See [LICENSE.txt](LICENSE.txt).
 
