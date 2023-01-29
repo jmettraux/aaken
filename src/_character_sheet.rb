@@ -181,10 +181,6 @@ style = %{
   .ability-circle .d {
     top: 0.8rem;
   }
-  .ability-diamond .d {
-    top: 0.7rem;
-    left: 1rem;
-  }
   .save-circle .d {
     top: 0.8rem;
     left: 1rem;
@@ -287,102 +283,23 @@ style = %{
     height: 100%;
     place-items: center;
     z-index: 0;
-    grid-template-columns: repeat(4, 7em);
+    grid-template-columns: repeat(3, 8em) auto;
     grid-template-rows: repeat(5, 4.2em);
+    justify-items: start;
   }
 
-  .a-label {
-    font-size: 71%;
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
-    color: grey;
-  }
-
-  .ability-label {
-    justify-self: left;
-    position: relative;
-    left: -0.49em;
-    font-size: 84%;
-  }
-  .save-label {
-    justify-self: left;
-    position: relative;
-    left: -0.49em;
-    font-size: 84%;
-  }
-
-  /*
-  .explanation-label {
-    color: grey;
-    padding-left: 0.1rem;
-    justify-self: right;
-    align-self: center;
-    font-size: 70%;
-    grid-row-end: span 2;
-    text-align: center;
-    line-height: 1.0;
-  }
-  .explanation-label:after {
-    content: '→';
-  }
-  .explanation-label.ass {
-    align-self: start;
-  }
-  */
-
-  .initiative {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    font-size: 70%;
-    justify-self: start;
-    align-self: end;
-    color: grey;
-    text-align: center;
-    margin-bottom: 1.4rem;
-    margin-left: 0.71rem;
-  }
-
-  .ability-bground {
-    background-color: lightgrey;
-    grid-column-end: span 3;
-    grid-row-end: span 2;
-    width: 100%;
-    height: #{hs.circle_side};
-    margin-bottom: 0.1rem;
-    border-radius: 3rem;
-  }
-  .ability-diamond {
-    width: #{hs.circle_side};
-    height: #{hs.circle_side};
-    grid-row-end: span 2;
-position: relative;
-  }
-  .ability-diamond .dia {
-    border: 7px solid grey;
-    background-color: white;
-    width: #{hs.circle_side};
-    height: #{hs.circle_side};
-    position: absolute;
-    transform: scale(0.7, 0.9) rotate(45deg);
-  }
-
-  .ability-circle {
+  .ability-circle, .save-circle {
     width: #{hs.circle_side};
     height: #{hs.circle_side};
     border-radius: #{hs.circle_side};
     border: #{hs.border_width} solid grey;
     background-color: white;
-    z-index: 10;
-    /*grid-row-end: span 2;*/
+    left: 0.84em;
+  }
+  .ability-circle {
   }
   .save-circle {
-    width: #{hs.circle_side};
-    height: #{hs.circle_side};
-    border-radius: #{hs.circle_side};
     border: #{hs.border_width} solid lightgrey;
-    background-color: white;
-    /*grid-row-end: span 2;*/
-    position: relative;
   }
 
   :is(.ability-circle, .save-circle) .dia {
@@ -691,9 +608,6 @@ position: relative;
     font-size: 9pt;
     line-height: 0.8;
     color: darkgrey;
-    position: absolute;
-    left: 45.8%;
-    top: 1.55rem;
     border-collapse: collapse;
   }
   table.acoc .l {
@@ -799,22 +713,30 @@ def div(*args, &block); make(:div, *args, &block); end
 def span(*args, &block); make(:span, *args, &block); end
 def img(*args); make(:img, *args); end
 
+def acoc_table(x, y, sx, sy)
+  puts %{
+    <table
+      class="acoc"
+      style="grid-column-start: #{x}; grid-column-end: span #{sx};
+             grid-row-start: #{y}; grid-row-end: span #{sy};
+             align-self: start; justify-self: right;"
+    >
+      <tr><td class="l">AC</td><td class="c">⇌</td><td class="r">OC</td></tr>
+      <tr><td class="l"> 3</td><td class="c"> </td><td class="r">18</td></tr>
+      <tr><td class="l"> 4</td><td class="c"> </td><td class="r">17</td></tr>
+      <tr><td class="l"> 5</td><td class="c"> </td><td class="r">16</td></tr>
+      <tr><td class="l"> 6</td><td class="c"> </td><td class="r">15</td></tr>
+      <tr><td class="l"> 7</td><td class="c"> </td><td class="r">14</td></tr>
+      <tr><td class="l"> 8</td><td class="c"> </td><td class="r">13</td></tr>
+      <tr><td class="l"> 9</td><td class="c"> </td><td class="r">12</td></tr>
+      <tr><td class="l">10</td><td class="c"> </td><td class="r">11</td></tr>
+      <tr><td class="l">OC</td><td class="c">⇌</td><td class="r">AC</td></tr>
+    </table> }
+end
+
 puts %{
-<div class="page">
-  <table class="acoc">
-    <tr><td class="l">AC</td><td class="c">⇌</td><td class="r">OC</td></tr>
-    <tr><td class="l"> 3</td><td class="c"> </td><td class="r">18</td></tr>
-    <tr><td class="l"> 4</td><td class="c"> </td><td class="r">17</td></tr>
-    <tr><td class="l"> 5</td><td class="c"> </td><td class="r">16</td></tr>
-    <tr><td class="l"> 6</td><td class="c"> </td><td class="r">15</td></tr>
-    <tr><td class="l"> 7</td><td class="c"> </td><td class="r">14</td></tr>
-    <tr><td class="l"> 8</td><td class="c"> </td><td class="r">13</td></tr>
-    <tr><td class="l"> 9</td><td class="c"> </td><td class="r">12</td></tr>
-    <tr><td class="l">10</td><td class="c"> </td><td class="r">11</td></tr>
-    <tr><td class="l">OC</td><td class="c">⇌</td><td class="r">AC</td></tr>
-  </table>
-  <div class="page-grid">
-}
+  <div class="page">
+    <div class="page-grid"> }
 
 div('.left.subgrid', 1, 1) do
 
@@ -822,6 +744,8 @@ div('.left.subgrid', 1, 1) do
   div('.vlabel', 1, 2, '↑ Skills');
 
   div('.ability-grid', 2, 1) do
+
+    acoc_table(4, 1, 1, 2)
 
     x = 1
 
@@ -1202,31 +1126,31 @@ puts %{
 
     var ade = H.elt('.ability-dialog');
 
-    H.on(
-      '.ability-diamond',
-      'click',
-      function(ev) {
-        ade._target = H.elt(ev.target, '^.ability-diamond');
-        H.elt(ade, 'input.score').value = H.text(ade._target, '.d');
-        H.unhide(ade);
-        H.elt(ade, 'input.score').focus(); });
-    H.on(
-      '.ability-dialog input.ok',
-      'click',
-      function(ev) {
-        var v = H.vali(ade, 'input.score');
-        if (typeof v !== 'number') return;
-        if (v < 1 || v > 21) return;
-        H.elt(ade._target, '.d').textContent = '' + v;
-        H.hide(ade);
-        recompute();
-      });
-    H.on(
-      '.ability-dialog input.score',
-      'keyup',
-      function(ev) {
-        if (ev.code === 'Enter') H.elt('.ability-dialog input.ok').click();
-      });
+    //H.on(
+    //  '.ability-diamond',
+    //  'click',
+    //  function(ev) {
+    //    ade._target = H.elt(ev.target, '^.ability-diamond');
+    //    H.elt(ade, 'input.score').value = H.text(ade._target, '.d');
+    //    H.unhide(ade);
+    //    H.elt(ade, 'input.score').focus(); });
+    //H.on(
+    //  '.ability-dialog input.ok',
+    //  'click',
+    //  function(ev) {
+    //    var v = H.vali(ade, 'input.score');
+    //    if (typeof v !== 'number') return;
+    //    if (v < 1 || v > 21) return;
+    //    H.elt(ade._target, '.d').textContent = '' + v;
+    //    H.hide(ade);
+    //    recompute();
+    //  });
+    //H.on(
+    //  '.ability-dialog input.score',
+    //  'keyup',
+    //  function(ev) {
+    //    if (ev.code === 'Enter') H.elt('.ability-dialog input.ok').click();
+    //  });
 
     //H.on(
     //  '.save-circle.explanation',
