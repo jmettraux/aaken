@@ -342,6 +342,17 @@ style = %{
     left: -2.1em;
     top: 0.2em;
   }
+  .axis.diagonal {
+    width: 80%;
+    height: 1px;
+    border-bottom: 7px solid lightgrey;
+    justify-self: center;
+    transform: rotate(28deg);
+    left: -2.1em;
+  }
+  .axis.diagonal.up {
+    transform: rotate(-28deg);
+  }
 
   .line {
     grid-row-end: span 2;
@@ -865,6 +876,9 @@ div('.left.subgrid', 1, 1) do
     div('.axis.horizontal', 1, 1, 3, 1)
     div('.axis.horizontal', 1, 3, 3, 1)
     div('.axis.horizontal', 1, 5, 3, 1)
+
+    div('.axis.diagonal.down', 1, 1, 3, 3)
+    div('.axis.diagonal.up', 1, 3, 3, 3)
   end
 
   div('.skill-grid', 2, 2) do
