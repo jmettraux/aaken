@@ -189,10 +189,6 @@ style = %{
     left: 0.2rem;
     top: -1.0rem;
   }
-  /*.save-circle.explanation .dia + .d {
-    left: 0.2rem;
-    top: -0.8rem;
-  }*/
   .skill-box .d {
     left: 28%;
     top: -2px;
@@ -242,7 +238,6 @@ style = %{
     position: relative;
 
     margin: 0;
-/*border: 1px solid lightgrey;*/
   }
 
   .page-grid {
@@ -327,6 +322,17 @@ style = %{
     left: 0.84em;
   }
   .save-circle .label {
+  }
+
+  .axis {
+    z-index: -10;
+    position: relative;
+  }
+  .axis.vertical {
+    width: 1px;
+    height: 75%;
+    border-left: 7px solid lightgrey;
+    left: 2.1em;
   }
 
   .line {
@@ -778,6 +784,9 @@ div('.left.subgrid', 1, 1) do
       span('.d', { 'data-key' => 'wisdom_oc' }, character.wisdom)
       div('.dia')
       span('.d', { 'data-key' => 'wisdom_ac' }, character.wisdom_ac) }
+
+    div('.axis.vertical', 1, 1, 1, 3)
+    div('.axis.vertical', 1, 3, 1, 3)
 
     x = 2
 
