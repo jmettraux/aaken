@@ -52,7 +52,7 @@ Traits
 : traits bring in "exceptions".
 
 Checks
-: 1d20 + _skill_ ≥ target number.
+: 1d20 + _skill_ ≥ target number → success.
 
 Target
 : Referee has AC or OC scores to choose from.

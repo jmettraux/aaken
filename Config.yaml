@@ -29,6 +29,6 @@ srcsha: cat src/*.md | sha1
 author: Jehan Mestral — https://weaver.skepti.ch
 url: https://github.com/jmettraux/aaken
 
-license: CC BY-SA 4.0
-license_url: https://creativecommons.org/licenses/by-sa/4.0/
+license: CC BY 4.0
+license_url: https://creativecommons.org/licenses/by/4.0/
 

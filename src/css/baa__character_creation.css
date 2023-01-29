@@ -1,0 +1,19 @@
+
+/* baa__character_creation.css */
+
+
+[data-aa-title="character creation"] del {
+  font-size: var(--size-b);
+  color: #c0c0c0;
+  margin-right: 0.1rem;
+}
+[data-aa-title="character creation"] del::after {
+  content: '←';
+}
+[data-aa-title="character creation"] dl {
+  margin-top: 2rem;
+}
+[data-aa-title="character creation"] dt {
+  position: relative;
+}
+

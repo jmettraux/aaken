@@ -15,6 +15,7 @@ html0: clean
 	cp lib/assets/*.ico out/html/
 	cp lib/assets/*.png out/html/
 	cp lib/assets/*.svg out/html/
+	cp lib/assets/*.css out/html/
 	cp lib/assets/*.js out/html/
 	$(RUM) make_css
 csheet: html0
