@@ -178,17 +178,16 @@ style = %{
     left: 4rem;
     bottom: 0.1rem;
   }
-  .ability-circle .d {
-    top: 0.8rem;
+
+  :is(.ability-circle, .save-circle) .d {
+    top: 1.1rem;
+    left: 0.9rem;
   }
-  .save-circle .d {
-    top: 0.8rem;
-    left: 1rem;
+  :is(.ability-circle, .save-circle) .dia + .d {
+    top: 0.30rem;
+    left: -0.53rem;
   }
-  .save-circle .dia + .d {
-    left: 0.2rem;
-    top: -1.0rem;
-  }
+
   .skill-box .d {
     left: 28%;
     top: -2px;
@@ -222,12 +221,6 @@ style = %{
     left: 0.05rem;
     color: #9999ee;
   }
-  /*
-  .explanation .d {
-    color: grey;
-    font-size: 70%;
-  }
-  */
 
   .skill-box {
     padding: 0;
@@ -278,7 +271,7 @@ style = %{
     height: 100%;
     place-items: center;
     z-index: 0;
-    grid-template-columns: repeat(3, 8em) auto;
+    grid-template-columns: repeat(3, 7.0em) auto;
     grid-template-rows: repeat(5, 4.2em);
     justify-items: start;
   }
@@ -314,14 +307,21 @@ style = %{
 
   :is(.ability-circle, .save-circle) .label {
     z-index: 999;
-    background-color: #ffffff55;
     font-size: 12pt;
     position: relative;
     display: inline-block;
-    top: -1.00em;
-    left: 0.84em;
+    top: -1.50em;
+    left: 0.50em;
   }
   .save-circle .label {
+  }
+
+  .save-circle.explanation {
+    justify-self: center;
+  }
+  .save-circle.explanation .d {
+    color: grey;
+    font-size: 11pt;
   }
 
   .axis {
@@ -352,6 +352,24 @@ style = %{
   }
   .axis.diagonal.up {
     transform: rotate(-28deg);
+  }
+
+  .acoc-explanation {
+    align-self: start;
+    justify-self: center;
+    font-size: 11pt;
+  }
+  .acoc-explanation .t {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: lightgrey;
+    position: relative;
+  }
+  .acoc-explanation .t.ac {
+    top: -0.7rem;
+  }
+  .acoc-explanation .t.oc {
+    top: -2.1rem;
   }
 
   .line {
@@ -738,27 +756,6 @@ def div(*args, &block); make(:div, *args, &block); end
 def span(*args, &block); make(:span, *args, &block); end
 def img(*args); make(:img, *args); end
 
-def acoc_table(x, y, sx, sy)
-  puts %{
-    <table
-      class="acoc"
-      style="grid-column-start: #{x}; grid-column-end: span #{sx};
-             grid-row-start: #{y}; grid-row-end: span #{sy};
-             align-self: start; justify-self: right;"
-    >
-      <tr><td class="l">AC</td><td class="c">⇌</td><td class="r">OC</td></tr>
-      <tr><td class="l"> 3</td><td class="c"> </td><td class="r">18</td></tr>
-      <tr><td class="l"> 4</td><td class="c"> </td><td class="r">17</td></tr>
-      <tr><td class="l"> 5</td><td class="c"> </td><td class="r">16</td></tr>
-      <tr><td class="l"> 6</td><td class="c"> </td><td class="r">15</td></tr>
-      <tr><td class="l"> 7</td><td class="c"> </td><td class="r">14</td></tr>
-      <tr><td class="l"> 8</td><td class="c"> </td><td class="r">13</td></tr>
-      <tr><td class="l"> 9</td><td class="c"> </td><td class="r">12</td></tr>
-      <tr><td class="l">10</td><td class="c"> </td><td class="r">11</td></tr>
-      <tr><td class="l">OC</td><td class="c">⇌</td><td class="r">AC</td></tr>
-    </table> }
-end
-
 puts %{
   <div class="page">
     <div class="page-grid"> }
@@ -769,8 +766,6 @@ div('.left.subgrid', 1, 1) do
   div('.vlabel', 1, 2, '↑ Skills');
 
   div('.ability-grid', 2, 1) do
-
-    acoc_table(4, 1, 1, 2)
 
     x = 1
 
@@ -870,6 +865,8 @@ div('.left.subgrid', 1, 1) do
       div('.dia')
       span('.d', { 'data-key' => 'wisdom_ac' }, character.wisdom_ac) }
 
+    # axis...
+
     div('.axis.vertical', 1, 1, 1, 3)
     div('.axis.vertical', 1, 3, 1, 3)
 
@@ -879,6 +876,37 @@ div('.left.subgrid', 1, 1) do
 
     div('.axis.diagonal.down', 1, 1, 3, 3)
     div('.axis.diagonal.up', 1, 3, 3, 3)
+
+    # column 4
+
+    div('.save-circle.explanation', 4, 1) {
+      span('.d', { 'data-key' => 'oc' }, 'OC')
+      div('.dia')
+      span('.d', { 'data-key' => 'ac' }, 'AC') }
+
+    div('.acoc-explanation', 4, 2, 1, 3) {
+      span('.t.ac', '← Ability Class (raw 3d6)')
+      span('.t.oc', '← Over Come class')
+    }
+
+    puts %{
+    <table
+      class="acoc"
+      style="grid-column-start: 4; grid-column-end: span 1;
+             grid-row-start: 4; grid-row-end: span 2;
+             align-self: center; justify-self: center;"
+    >
+      <tr><td class="l">AC</td><td class="c">⇌</td><td class="r">OC</td></tr>
+      <tr><td class="l"> 3</td><td class="c"> </td><td class="r">18</td></tr>
+      <tr><td class="l"> 4</td><td class="c"> </td><td class="r">17</td></tr>
+      <tr><td class="l"> 5</td><td class="c"> </td><td class="r">16</td></tr>
+      <tr><td class="l"> 6</td><td class="c"> </td><td class="r">15</td></tr>
+      <tr><td class="l"> 7</td><td class="c"> </td><td class="r">14</td></tr>
+      <tr><td class="l"> 8</td><td class="c"> </td><td class="r">13</td></tr>
+      <tr><td class="l"> 9</td><td class="c"> </td><td class="r">12</td></tr>
+      <tr><td class="l">10</td><td class="c"> </td><td class="r">11</td></tr>
+      <tr><td class="l">OC</td><td class="c">⇌</td><td class="r">AC</td></tr>
+    </table> }
   end
 
   div('.skill-grid', 2, 2) do
