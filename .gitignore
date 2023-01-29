@@ -10,6 +10,7 @@ src/_scratch.md
 
 out/tmp/*.md
 out/tmp/*.html
+out/tmp/blank_*.pdf
 
 out/html/*.js
 out/html/*.ps

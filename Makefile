@@ -14,15 +14,15 @@ html0: clean
 	cp lib/assets/blank*.pdf out/tmp/
 	cp lib/assets/*.ico out/html/
 	cp lib/assets/*.png out/html/
-	cp lib/assets/*.css out/html/
 	cp lib/assets/*.svg out/html/
 	cp lib/assets/*.js out/html/
+	$(RUM) make_css
 csheet: html0
-	$(RUBY) src/_character_sheet.rb \
+	$(RUBY) src/html/_character_sheet.rb \
       > out/html/character_sheet.html
-	AACHEN_CHAR_YAML=src/_char.yaml $(RUBY) src/_character_sheet.rb \
+	AACHEN_CHAR_YAML=src/html/_char.yaml $(RUBY) src/html/_character_sheet.rb \
       > out/html/character_sheet_0.html
-	AACHEN_CSHEET_ABILITIES=true $(RUBY) src/_character_sheet.rb \
+	AACHEN_CSHEET_ABILITIES=true $(RUBY) src/html/_character_sheet.rb \
       > out/html/csheet_abilities.html
 	chrome --headless --no-sandbox --disable-gpu \
       --window-size=$(SHOOTGEO) \

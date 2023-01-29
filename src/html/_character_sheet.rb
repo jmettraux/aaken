@@ -50,7 +50,7 @@ class Character
 #PP.pp(@h, $stderr)
   end
   def method_missing(k)
-$stderr.puts [ :mm, k ].inspect
+#$stderr.puts [ :mm, k ].inspect
     if m = k.to_s.match(/^(.+)(_[a-z]+)$/)
       send("get#{m[2]}", m[1].to_sym)
     else
@@ -362,7 +362,7 @@ style = %{
   .acoc-explanation .t {
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    color: lightgrey;
+    color: grey;
     position: relative;
   }
   .acoc-explanation .t.ac {

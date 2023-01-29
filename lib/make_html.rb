@@ -25,7 +25,7 @@ def make_html
     giturl :
     giturl.gsub(':', '/').gsub(/^git@/, 'https://').gsub(/\.git$/, '')
 
-  pages = Dir['src/*.md']
+  pages = Dir['src/html/*.md']
     .sort
     .select { |path| File.basename(path).match?(/^([a-z]{3})__(.+)\.md$/) }
 

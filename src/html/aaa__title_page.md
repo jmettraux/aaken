@@ -52,19 +52,31 @@ Traits
 : traits bring in "exceptions".
 
 Checks
-: 1d20 + _skill_ ≥ own `TC`; or
-: 1d20 + _skill_ ≥ opponent's `DC` or `AC`; or
-: 1d20 + _skill_ ≥ opponent's 1d20 + _skill_; skills may differ.
+: 1d20 + _skill_ ≥ target number.
 
-Targets
-: `DC`s correspond to ability scores;
-: `TC`s are inverted `DC`s (21 - `DC`s) or
-: means (round up) of other `TC`s;
-: `TC` Transcend / `DC` Defend.
+Target
+: Referee has AC or OC scores to choose from.
 
 Opposition
-: may leverage any B/X stat'ed monster (`HD`, `AC`, attacks, ...).
+: may leverage any B/X stat'ed monster as is (`HD`, `AC`, attacks, ...).
 
 Magic
 : non-scholarly system.
+
+
+<!--
+AC
+: stands for "Ability Class";
+: the higher the better, like the Armor Class;
+: it is simply the ability score (the result of a 3d6 roll usually).
+
+OC
+: stands for "Overcome Class" or "Over Come class";
+: the lower the better.
+
+Checks
+: 1d20 + _skill_ ≥ own `OC`; or
+: 1d20 + _skill_ ≥ opponent's `AC`; or
+: 1d20 + _skill_ ≥ opponent's 1d20 + _skill_; skills may differ.
+-->
 

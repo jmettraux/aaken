@@ -1,0 +1,16 @@
+
+/* aaa_title_page.css */
+
+[data-aa-page="1"] h1 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+[data-aa-page="1"] dl {
+  grid-template-columns: 24% auto;
+  margin-bottom: 2rem;
+}
+[data-aa-page="1"] hr {
+  width: 63%;
+  margin-bottom: 2rem;
+}
+

@@ -1,0 +1,486 @@
+
+/* aachen.css */
+
+/*
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+*/
+@import url("https://use.typekit.net/aqv1anf.css");
+
+/*
+ *   4pt  Brilliant      Perle
+ *   5pt  Pearl          Sedanoise
+ *   6pt  Nonpareil      Nonpareille
+ *   7pt  Minion         Mignonne
+ *   8pt  Brevier        Gaillarde Petit-texte
+ *   9pt  Bourgeois      Petit-romain Gaillarde
+ *  10pt  Long Primer    Philosophie
+ *  11pt  Small Pica     Cicero
+ *  12pt  Pica           St-Augustin
+ *  14pt  English        Gros-texte
+ *  18pt  Great Primer   Gros-romain
+ *  20pt  Paragon        Petit-paragon
+ */
+
+/*
+ * [ ] TODO try small caps for **bold**
+ * [x] TODO style <blockquote>
+ */
+
+:root {
+
+  --phi: 1.61803398875;
+  --sq2: 1.41421356237;
+
+  --size-a: 14pt;
+    --mul-a: 1.15;
+  --size-b: 12pt;
+    --mul-b: calc((2 * var(--size-a) * var(--mul-a)) / (3 * var(--size-b)));
+  --size-c: 10pt;
+    --mul-c: calc((1 * var(--size-a) * var(--mul-a)) / (2 * var(--size-c)));
+
+  --page-width: 210mm; /* A4 */
+  --page-height: 297mm; /* A4 */
+  /*--page-width: 215.9mm; /* US Letter */
+  /*--page-height: 279.4mm; /* US Letter */
+
+  --tblock-height: calc(var(--page-height) / 10 * 9);
+  --tblock-width: calc(var(--tblock-height) / var(--phi));
+
+  --top-margin: calc((var(--page-height) - var(--tblock-height)) / 3);
+  --spine-margin: calc(var(--page-width) / 21);
+
+  --edge-margin: calc(var(--page-width) - var(--spine-margin) - var(--tblock-width));
+
+  --side-left: calc(var(--spine-margin) + var(--tblock-width) + 1.0ch);
+  --side-rest: calc(var(--page-width) - var(--side-left));
+  --side-width: calc(var(--side-rest) - var(--spine-margin));
+
+  --title-face: trajan-pro-3, serif;
+  --main-face: minion-pro, serif;
+  --sans-face: ff-scala-sans-pro, sans-serif;
+
+  /*
+  --border-maybe: lightgrey solid thin;
+  */
+  --border-maybe: none;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+  /* https://css-tricks.com/almanac/properties/b/box-sizing/ */
+
+/* top right bottom left */
+
+html {
+
+  font-family: var(--main-face);
+  font-size: var(--size-a);
+  line-height: var(--mul-a);
+}
+
+body {
+
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hidden { display: none; }
+
+del {
+  text-decoration: none;
+  color: red;
+}
+
+ul:not(.compass) {
+  list-style: none;
+  padding-inline-start: 0.1rem;
+}
+ul:not(.compass) li:before {
+  content: '*';
+  font-weight: bolder;
+  padding-right: 0.3rem;
+}
+
+.page {
+
+  position: relative;
+
+  width: var(--page-width);
+  min-height: var(--page-height);
+
+  /*padding: 4.23mm; / * Brother printable area.... */
+
+  margin: 0;
+
+  /*
+  border-right: grey solid thin;
+  border-bottom: grey solid thin;
+  */
+}
+
+.text-block {
+
+  position: relative;
+
+  /*border: lightgrey solid thin;*/
+  border: var(--border-maybe);
+
+  margin-top: var(--top-margin);
+  margin-left: var(--spine-margin);
+
+  min-width: var(--tblock-width);
+  max-width: var(--tblock-width);
+  min-height: var(--tblock-height);
+  max-height: var(--tblock-height);
+
+  /*overflow: hidden; / * in .page has bad effects when printing */
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.margin {
+
+  position: absolute;
+  top: 0;
+  left: var(--side-left);
+
+  min-width: var(--side-width);
+  max-width: var(--side-width);
+
+  min-height: var(--tblock-height);
+  max-height: var(--tblock-height);
+
+  font-size: var(--size-b);
+  line-height: var(--mul-b);
+}
+.margin p {
+  margin: 0;
+  margin-bottom: 1em;
+  text-indent: 0 !important;
+  text-align: left;
+}
+.margin .note {
+
+  /*border: lightgrey solid thin;*/
+  border: var(--border-maybe);
+
+  width: 100%;
+
+  position: absolute;
+}
+.margin h2 {
+  font-size: var(--size-a);
+  line-height: var(--mul-a);
+  font-weight: normal;
+  font-style: italic;
+  margin-top: 4em !important;
+}
+.page.even .margin h2 {
+  text-align: right;
+}
+
+.folio {
+
+  margin-top: 1em;
+  margin-left: var(--spine-margin);
+
+  min-width: var(--tblock-width);
+  max-width: var(--tblock-width);
+
+  text-align: right;
+}
+
+.page.even .text-block {
+  margin-left: var(--edge-margin);
+}
+.page.even .folio {
+  margin-left: var(--edge-margin);
+  text-align: left;
+}
+.page.even .margin {
+  left: calc(var(--page-width) - var(--side-left) - var(--side-width));
+}
+
+@page {
+  size: A4;
+  /*size: Letter;*/
+  margin: 0;
+  padding: 0;
+}
+@media print {
+  .page {
+    margin: 0;
+    border: initial;
+    width: initial;
+    min-height: initial;
+    page-break-after: always;
+  }
+  .text-block {
+    /*
+    position: relative;
+    */
+  }
+}
+
+/*
+.ruler {
+  display: none;
+  margin-top: 0.5rem;
+  width: 100%;
+  position: absolute;
+  color: lightgrey;
+  text-align: right;
+}
+.ruler > div {
+  border-bottom: lightgrey solid thin;
+}
+*/
+
+/* CORE TAGS */
+
+h1, h2, h3 {
+  margin: 0;
+}
+h1 {
+  margin-bottom: 1.5rem;
+  font-family: var(--title-face);
+  font-weight: 600;
+  font-style: normal;
+}
+h1:not(:first-child) {
+  margin-top: 4rem;
+}
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-variant: small-caps;
+  font-weight: normal;
+  font-size: calc(2 * var(--size-a));
+  line-height: var(--mul-a);
+  text-transform: lowercase;
+}
+h2:first-child {
+  margin-top: 0;
+}
+h3 {
+  margin-top: 1rem;
+  text-transform: capitalize;
+}
+
+p {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  text-align: justify;
+}
+p + p {
+  text-indent: 1.2em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  page-break-inside: avoid;
+  line-height: 0.9;
+}
+th, td {
+  padding: 0.28em 0.49em 0.28em 0.49em;
+}
+th {
+  border-bottom: solid thin;
+}
+
+code {
+  font-family: var(--main-face);
+  font-variant: small-caps;
+  font-variant-numeric: lining-nums; /* else the numbers are small... */
+  text-transform: lowercase;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+dt {
+  grid-column: 1;
+  font-weight: bold;
+  padding-right: 0.5em;
+  text-align: right;
+}
+dt:after {
+  content: '·';
+  padding-left: 0.5em;
+}
+dd {
+  margin-inline-start: initial;
+  grid-column: 2;
+  /*
+  text-align: justify;
+  */
+}
+dd.last-dd {
+  margin-bottom: 0.5em;
+}
+dd > p {
+  margin: 0;
+}
+
+
+/* CLASSES */
+
+.clear { clear: both; }
+
+.book-title {
+  font-size: 60pt;
+  margin-top: 0.5rem;
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+}
+.left-column {
+}
+.right-column {
+}
+.two-columns:not(:first-of-type) {
+  margin-top: 1rem;
+}
+
+ul.compass {
+  position: absolute;
+  /* top: 3.5em; */
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+  text-align: left;
+  font-style: italic;
+  padding-left: 0.3rem;
+  padding-right: 0;
+}
+ul.compass li {
+  color: #c0c0c0;
+  display: block;
+}
+ul.compass li:not(:first-child) {
+  text-indent: -0.6rem;
+  margin-left: 0.6rem;
+}
+ul.compass li:first-child {
+  margin-bottom: 0.5rem;
+  line-height: 0.9;
+}
+ul.compass li:first-child em {
+  font-style: normal;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  color: black;
+}
+ul.compass li strong {
+  color: black;
+  font-weight: normal;
+}
+.page.even ul.compass {
+  text-align: right;
+  padding-left: 0;
+  padding-right: 0.3rem;
+}
+.page.even ul.compass li:not(:first-child) {
+  margin-left: 0;
+  /*
+  direction: rtl;
+  text-indent: -0.6rem;
+  margin-right: 0.6rem;
+  */
+}
+
+.quarter-left { float: left; margin-right: 1rem; width: 24%; }
+.third-left { float: left; margin-right: 1rem; width: 32%; }
+.half-left { float: left; margin-right: 1rem; width: 49%; }
+
+.quarter-right { float: right; margin-left: 1rem; width: 24%; }
+.third-right { float: right; margin-left: 1rem; width: 32%; }
+.half-right { float: right; margin-left: 1rem; width: 49%; }
+
+.compact { line-height: 0.77; }
+.compact6 { line-height: 0.66; }
+
+.column-break { /* height: var(--page-height); must be set at flex level */
+  flex-basis: 100%;
+  width: 0 !important;
+}
+
+table.backgrounds {
+  line-height: 0.6;
+}
+
+.background-table {
+  grid-template-columns: 30% auto;
+}
+table.background {
+  float: left;
+  width: 49%;
+  font-size: var(--size-c);
+  line-height: 0.77;
+  margin-right: 1rem;
+  margin-bottom: 0.7rem;
+}
+table.background th:first-child {
+  color: #c0c0c0;
+  text-align: left;
+  border-bottom: black solid thin;
+}
+table.background th:nth-child(1) { width: 28%; }
+table.background th:nth-child(5) { width: 28%; }
+
+/*
+table.background-example {
+  float: right;
+  width: 49%;
+  font-size: var(--size-c);
+  line-height: 0.77;
+  margin-left: 1rem;
+  margin-right: 0;
+  margin-bottom: 1rem;
+}
+table.background-example th,
+table.background-example td {
+  color: darkgrey;
+  border-color: darkgrey !important;
+}
+*/
+
+table.social-class {
+  table-layout: fixed;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+table.social-class th {
+  padding-left: 0;
+  border-bottom: lightgrey solid thin;
+  font-weight: 500;
+}
+table.social-class td {
+  padding-left: 0;
+}
+table.social-class th:nth-child(1) {
+  width: 40%;
+}
+
+dl.with-preamble dt:first-of-type::after {
+  content: '';
+}
+dl.with-preamble dd:first-of-type {
+  font-style: italic;
+}
+
+/* top right bottom left */
+
