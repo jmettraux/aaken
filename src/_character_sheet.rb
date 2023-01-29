@@ -334,6 +334,14 @@ style = %{
     border-left: 7px solid lightgrey;
     left: 2.1em;
   }
+  .axis.horizontal {
+    width: 75%;
+    height: 1px;
+    border-bottom: 7px solid lightgrey;
+    justify-self: center;
+    left: -2.1em;
+    top: 0.2em;
+  }
 
   .line {
     grid-row-end: span 2;
@@ -785,9 +793,6 @@ div('.left.subgrid', 1, 1) do
       div('.dia')
       span('.d', { 'data-key' => 'wisdom_ac' }, character.wisdom_ac) }
 
-    div('.axis.vertical', 1, 1, 1, 3)
-    div('.axis.vertical', 1, 3, 1, 3)
-
     x = 2
 
     div('.save-circle', x, 1) {
@@ -853,6 +858,13 @@ div('.left.subgrid', 1, 1) do
       span('.d', { 'data-key' => 'wisdom_oc' }, character.wisdom)
       div('.dia')
       span('.d', { 'data-key' => 'wisdom_ac' }, character.wisdom_ac) }
+
+    div('.axis.vertical', 1, 1, 1, 3)
+    div('.axis.vertical', 1, 3, 1, 3)
+
+    div('.axis.horizontal', 1, 1, 3, 1)
+    div('.axis.horizontal', 1, 3, 3, 1)
+    div('.axis.horizontal', 1, 5, 3, 1)
   end
 
   div('.skill-grid', 2, 2) do
