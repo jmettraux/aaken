@@ -1,9 +1,10 @@
 
 <!-- .margin.compass -->
 * _Character Creation_
-* Summary
+* Process
 * Backgrounds
 * Skills
+* Classes
 * **Traits**
 * Equipment
 
@@ -168,9 +169,10 @@ Upon creation and levelling up, characters get 2 or 3 attempts at traits, depend
 
 <!-- .margin.compass -->
 * _Character Creation_
-* Summary
+* Process
 * Backgrounds
 * Skills
+* Classes
 * **Traits**
 * Equipment
 

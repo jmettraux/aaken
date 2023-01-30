@@ -1,9 +1,10 @@
 
 <!-- .margin.compass -->
 * _Character Creation_
-* Summary
+* Process
 * Backgrounds
 * **Skills**
+* Classes
 * Traits
 * Equipment
 

@@ -1,0 +1,76 @@
+
+/* bac__classes.css */
+
+[data-aa-title="classes"] h1 {
+  margin-bottom: 0;
+}
+[data-aa-title="classes"] h2 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+[data-aa-title="classes"] h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+
+[data-aa-title="classes"] del {
+  font-size: 70%;
+  color: grey;
+}
+
+[data-aa-title="classes"] p {
+  font-size: var(--size-b);
+}
+
+[data-aa-title="classes"] table {
+  float: left;
+  width: 52%;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: var(--size-b);
+  line-height: 0.42;
+}
+[data-aa-title="classes"] table td:nth-child(1) { width: 36%; }
+[data-aa-title="classes"] table td:nth-child(2) { width: 21%; }
+[data-aa-title="classes"] table tr:nth-child(2) td {
+  border-bottom: solid thin #c0c0c0;
+}
+[data-aa-title="classes"] table tr:nth-child(5) td {
+  border-bottom: solid thin #c0c0c0;
+}
+
+[data-aa-title="classes"] h2.top {
+  margin-top: -0.25rem;
+}
+[data-aa-title="classes"] table.top {
+  margin-top: 0.5rem;
+}
+
+[data-aa-title="classes"] h2:not(.top) {
+  margin-top: 0.28rem;
+}
+
+[data-aa-title="classes"] table.right {
+  float: right;
+  margin-left: 1rem;
+  margin-right: 0;
+}
+
+[data-aa-title="classes"] p + h1 {
+  margin-top: 3rem;
+}
+[data-aa-title="classes"] h1 em {
+  font-size: 66%;
+  font-style: normal;
+  text-transform: lowercase;
+}
+
+[data-aa-title="classes"] h2 em {
+  font-size: 75%;
+  font-style: normal;
+}
+
