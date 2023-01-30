@@ -1,0 +1,65 @@
+
+/* bac__traits.css */
+
+
+[data-aa-title="traits"] .text-block {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  column-gap: 1rem;
+}
+[data-aa-title="traits"] .text-block > * {
+  width: calc((var(--tblock-width) - 1rem) / 2);
+}
+[data-aa-title="traits"] p + .trait {
+  margin-top: 1rem;
+}
+[data-aa-title="traits"] .trait {
+  font-size: var(--size-b);
+}
+[data-aa-title="traits"] .trait h3 {
+  font-size: var(--size-a);
+  margin-top: 0;
+  font-weight: normal;
+  font-variant: small-caps;
+  text-transform: lowercase;
+}
+[data-aa-title="traits"] .trait h3 code {
+  font-size: var(--size-b);
+}
+[data-aa-title="traits"] .trait h3 code:before { content: '· ('; }
+[data-aa-title="traits"] .trait h3 code:after { content: ')'; }
+[data-aa-title="traits"] .trait h3 strong {
+  font-size: var(--size-b);
+  font-weight: normal;
+  font-variant: normal;
+  color: #c0c0c0;
+}
+[data-aa-title="traits"] .trait h3 strong:before {
+  content: '·';
+  padding-right: 0.3rem;
+}
+[data-aa-title="traits"] .trait ul:not(.compass) {
+  margin-top: -0.1rem;
+  padding-inline-start: 0;
+  margin-bottom: 0.3rem;
+}
+[data-aa-title="traits"] .trait ul:not(.compass) li {
+  list-style: none;
+  margin-left: 0.9rem;
+  text-indent: -0.5rem;
+  line-height: 1.1;
+}
+[data-aa-title="traits"] .trait ul:not(.compass) li:before {
+  content: '·';
+  width: 0.6rem;
+  display: inline-block;
+  text-align: center;
+}
+[data-aa-title="traits"] .trait ul:not(.compass) li + li:before {
+  content: '··';
+}
+[data-aa-title="traits"] .trait ul:not(.compass) li + li + li:before {
+  content: '···';
+}
+
