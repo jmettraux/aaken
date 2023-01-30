@@ -1,0 +1,45 @@
+
+/* bac__backgrounds.css */
+
+
+[data-aa-title="backgrounds"] h3 {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  font-size: var(--size-a);
+}
+[data-aa-title="backgrounds"] h3 del {
+  color: grey;
+  font-size: 80%;
+  font-variant: normal;
+  text-transform: initial;
+  margin-left: 0.3rem;
+}
+
+[data-aa-title="backgrounds"] .margin table {
+  font-size: var(--size-c);
+  line-height: 0.77;
+}
+
+[data-aa-title="backgrounds"] table.background {
+  float: left;
+  width: 49%;
+  font-size: var(--size-c);
+  line-height: 0.6;
+  margin-right: 1rem;
+  margin-bottom: 0.7rem;
+}
+[data-aa-title="backgrounds"] table.background th:first-child {
+  color: #c0c0c0;
+  text-align: left;
+  border-bottom: black solid thin;
+}
+[data-aa-title="backgrounds"] table.background th:nth-child(1) { width: 28%; }
+[data-aa-title="backgrounds"] table.background th:nth-child(5) { width: 28%; }
+
+[data-aa-title="backgrounds"] table.social-class {
+  line-height: 0.6;
+}
+
