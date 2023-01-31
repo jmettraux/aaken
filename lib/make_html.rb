@@ -96,6 +96,14 @@ def make_html
 
   t0 = nil
 
+  idx = Dir['out/tmp/*.md']
+    .sort
+    .each_with_index
+    .inject({}) { |h, (path, i)|
+      m = path.match(/\/p(\d{3})__(.+)\.md$/)
+      h["PAGE_#{m[2].upcase}".to_sym] = i if m
+      h }
+
   Dir['out/tmp/*.md'].sort.each_with_index do |path, i|
 
     m = path.match(/\/p(\d{3})__(.+)\.md$/)
@@ -104,12 +112,15 @@ def make_html
     i = m[1].to_i
     t = m[2].gsub(/_/, ' ')
       #
-    h = CONFIG_CAP.merge(
-      GITBRA: gitbra, GITSHA: gitsha, GITURL: giturl, GITTAG: gittag,
-      WEBURL: weburl, SRCSHA: srcsha, PRINTED: printed,
-      PATH: path, PAGE: i,
-      TITLE: t, TITLE_: m[2],
-      EVEN: i % 2 == 0 ? :even : :odd)
+    h = CONFIG_CAP
+      .merge(
+        GITBRA: gitbra, GITSHA: gitsha, GITURL: giturl, GITTAG: gittag,
+        WEBURL: weburl, SRCSHA: srcsha, PRINTED: printed,
+        PATH: path, PAGE: i,
+        TITLE: t, TITLE_: m[2],
+        EVEN: i % 2 == 0 ? :even : :odd)
+      .merge(
+        idx)
 
     tmp = "out/tmp/pd#{m[1]}__#{m[2]}.md"
     tmp2 = "out/tmp/pht#{m[1]}__#{m[2]}.html"

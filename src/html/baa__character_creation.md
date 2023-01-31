@@ -14,14 +14,14 @@
 Level
 : A new character is level 1.
 
-~~p6~~Abilities
+Abilities
 : Determine `STR`, `DEX`, `CON`, `INT`, `WIS`, and `CHA`;
 : Roll 2 series of 6 × 3d6; pick best of the 2;
 : Assign the scores at will, inside of the diamonds (`AC` slot).
 
-~~p8-9~~Background
+~~${PAGE_BACKGROUNDS}~~Background
 : Roll 1d6 to determine which background applies;
-: Then follow the background table to roll or pick skills.
+: Follow the background table to roll or pick skills.
 
 <!--
 ~~p6~~Ability TCs
