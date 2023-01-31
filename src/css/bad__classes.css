@@ -2,7 +2,7 @@
 /* bac__classes.css */
 
 [data-aa-title="classes"] h1 {
-  margin-bottom: 0;
+  margin-bottom: 0.21rem;
 }
 [data-aa-title="classes"] h2 {
   margin-top: 0.75rem;
@@ -72,5 +72,9 @@
 [data-aa-title="classes"] h2 em {
   font-size: 75%;
   font-style: normal;
+}
+
+[data-aa-title="classes"] p.separator {
+  height: 0.77rem;
 }
 

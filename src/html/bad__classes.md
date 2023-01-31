@@ -66,9 +66,7 @@ A character with the `Fighter` class isn't necessarily a professional soldier, i
 
 ## Dabster
 
-One who is skilled, proficient. Thief, diplomat, healer, scholar, explorer, priest, artisan, ...
-
-Dabsters gain the widest variety of non-combat skills and are the quickest to learn more of them.
+One who is skilled, proficient. Thief, diplomat, healer, scholar, explorer, priest, artisan, ... Dabsters gain the widest variety of non-combat skills and are the quickest to learn more of them.
 
 <!-- .top -->
 | Item           | 1d20 ≥   | Count      |
@@ -84,12 +82,10 @@ Dabsters gain the widest variety of non-combat skills and are the quickest to le
 
 ## Caster
 
-At some point during their childhood, the `Caster`'s gift was revealed and they understood they were different and had to conceal that difference. Some of them are very talented, some others less so but were lucky enough to find someone whose trail they could walk in.
+At some point during their childhood, the `Caster`'s gift was revealed and they understood their difference and knew they had to conceal it.
 
-<!--
-# Hybrid Classes
-For when a player wants to place the cursor between two classes for their character.
--->
+<!-- .separator -->
+&nbsp;
 
 <!-- clear -->
 
@@ -103,6 +99,7 @@ For when a player wants to place the cursor between two classes for their charac
 | Magic Skills   |          |            |
 | Spells         |          |            |
 | Traits         |          | 3 attempts |
+
 
 ## Fighter-Dabster
 

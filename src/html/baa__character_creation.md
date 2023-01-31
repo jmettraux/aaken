@@ -14,14 +14,24 @@
 Level
 : A new character is level 1.
 
-Abilities
+Abilities AC
 : Determine `STR`, `DEX`, `CON`, `INT`, `WIS`, and `CHA`;
 : Roll 2 series of 6 × 3d6; pick best of the 2;
 : Assign the scores at will, inside of the diamonds (`AC` slot).
 
 ~~${PAGE_BACKGROUNDS}~~Background
-: Roll 1d6 to determine which background applies;
-: Follow the background table to roll or pick skills.
+: Roll 1d6 and follow the corresponding background table;
+: Pick the Free Skill;
+: Pick the Quick Skills or roll 4 times on the Growth and/or the Learning table;
+: Note that Artisan, Religious, and Elite people have an automatic advantage when rolling against `LEA OC`.
+
+~~${PAGE_SKILLS}~~Skills
+: By default, a skill is at -2;
+: Acquiring a skill puts it at +0;
+: Skill level maxes at char level + 1, so at level, max is +2.
+
+~~${PAGE_CLASSES}~~Classes
+: Foo bar
 
 <!--
 ~~p6~~Ability TCs
