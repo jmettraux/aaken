@@ -22,7 +22,8 @@ Abilities AC
 ~~${PAGE_BACKGROUNDS}~~Background
 : Roll 1d6 and follow the corresponding background table;
 : Pick the Free Skill;
-: Pick the Quick Skills or roll 4 times on the Growth and/or the Learning table;
+: Pick the Quick Skills; or
+: Roll 4 times on the Growth and/or the Learning table;
 : Note that Artisan, Religious, and Elite people have an automatic advantage when rolling against `LEA OC`.
 
 ~~${PAGE_SKILLS}~~Skills
@@ -31,7 +32,21 @@ Abilities AC
 : Skill level maxes at char level + 1, so at level, max is +2.
 
 ~~${PAGE_CLASSES}~~Classes
-: Foo bar
+: Choose between Fighter, Dabster, or Caster;
+: or between Fighter-Dabster, Figher-Caster, or Dabster-Caster;
+: Roll for HP, CP, and Skill counts;
+: Counts are rolled with _advantage_ if a 1d20 ≥ some `OC`;
+: Attempt to acquire Traits;
+: Don't forget the _learning advantage_ higher backgrounds have.
+
+~~${PAGE_SPELLS}~~Spells
+: Todo.
+
+~~${PAGE_NAME}~~Name
+: Todo.
+
+~~${PAGE_EQUIPMENT}~~Equipment
+: Todo.
 
 <!--
 ~~p6~~Ability TCs

@@ -1,7 +1,9 @@
 
 /* bac__traits.css */
 
-
+[data-aa-title="traits"] h1 {
+  margin-bottom: 1rem;
+}
 [data-aa-title="traits"] .text-block {
   display: flex;
   flex-direction: column;
