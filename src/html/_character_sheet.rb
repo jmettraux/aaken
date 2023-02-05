@@ -588,10 +588,10 @@ style = %{
   .skill-label .dice {
     font-size: 9pt;
     color: grey;
-    width: 0.9rem;
+    width: 1.4rem;
     text-align: right;
     display: inline-block;
-    margin-right: 0.3rem;
+    margin-right: 0.21rem;
   }
   .skill-box {
     border: #{hs.box_border_width} solid grey;
@@ -979,7 +979,7 @@ div('.left.subgrid', 1, 1) do
         klas = klas + '.grey' if k == '_'
         k = (k == '_') ? '_________' : k
         div('.skill-label' + klas, 3, 14 + i) do
-          span('.dice', (i + 1).to_s)
+          span('.dice', (i == 5 ? 'd6' : (i + 1)).to_s)
           span('.name', k)
         end
         div('.skill-box', 4, 14 + i) { span('.d', character.get(k)) }
@@ -993,7 +993,8 @@ div('.left.subgrid', 1, 1) do
     ].join('<br/>')
     div('.skill-note', 5, 1, t, 1, 16)
 
-    j = 1
+    d4d4 = [ 11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34, 41, 42, 'd4d4' ]
+    j = 0
     %w{
       _Bows _Crossbows _Slings _Javelins --- Throw
       ---
@@ -1010,7 +1011,7 @@ div('.left.subgrid', 1, 1) do
         it, k = k[0, 1] == '_' ? [ true, k[1..-1] ] : [ false, k ]
         at, k = k[-1, 1] == '*' ? [ true, k[0..-2] ] : [ false, k ]
         div('.skill-label' + (it ? '.italic' : ''), 7, 1 + i) do
-          span('.dice', j.to_s)
+          span('.dice', d4d4[j].to_s)
           span('.name', k)
           j = j + 1
         end
