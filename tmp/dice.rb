@@ -7,22 +7,25 @@
 class Dice
 
   attr_reader :s
+  attr_reader :spread, :spread_percentage
 
   def initialize(s)
 
     @s = s
-    m = s.match(/^(\d+)d(\d+)([tad]\d+)?(\s*[-+]\s*\d+)?$/)
+    m = s.match(/^(\d+)d(\d+)([tad]\d+)?$/)
 
     @cnt = m[1].to_i
     @die = m[2].to_i
     @adv = m[3]
-    @mod = m[4]
 
     m = @adv && @adv.match(/^(.)(\d+)$/)
     @adv = m && [ m[1], m[2].to_i ]
+
+    @spread = compute_spread
+    @spread_percentage = compute_spread_percentage
   end
 
-  def spread
+  def compute_spread
 
     d = (1..@die).to_a
 
@@ -41,21 +44,26 @@ class Dice
       .inject({}) { |h, e| h[e] = (h[e] || 0) + 1; h }
       .tap { |h| h[:count] = h.values.sum }
   end
+
+  def compute_spread_percentage
+
+    c = @spread[:count]
+
+    @spread.inject({}) { |h, (k, v)| h[k] = v.to_f / c * 100; h }
+  end
 end
 
 [
   '1d20',
   '2d10',
-  '2d10 + 1',
-  '2d10 - 1',
-  '2d20a1 - 1',
+  '2d20a1',
   '3d10t2',
 ]
   .each do |s|
     puts "-" * 80
     d = Dice.new(s)
     p d.s
-    p d
-    p d.spread
+    pp d.spread
+    pp d.spread_percentage
   end
 
