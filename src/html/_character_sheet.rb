@@ -657,7 +657,8 @@ style = %{
     text-align: right;
   }
   /*table.acoc tr:nth-child(1) { border-bottom: 1px solid lightgrey; }*/
-  table.acoc tr:nth-child(5) {
+  table.acoc tr:nth-child(4),
+  table.acoc tr:nth-child(7) {
     border-bottom: 1px solid lightgrey;
   }
   table.acoc tr:nth-child(6) td {
@@ -897,6 +898,7 @@ div('.left.subgrid', 1, 1) do
              align-self: center; justify-self: center;"
     >
       <tr><td class="l">AC</td><td class="c">⇌</td><td class="r">OC</td></tr>
+      <tr><td class="l"> 2</td><td class="c"> </td><td class="r">19</td></tr>
       <tr><td class="l"> 3</td><td class="c"> </td><td class="r">18</td></tr>
       <tr><td class="l"> 4</td><td class="c"> </td><td class="r">17</td></tr>
       <tr><td class="l"> 5</td><td class="c"> </td><td class="r">16</td></tr>
