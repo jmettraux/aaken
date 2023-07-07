@@ -30,7 +30,7 @@ class Dice
 
     r
       .collect { |e|
-        e = Array(e).sort
+        e = Array(e).flatten.sort
         if @adv
           e = (@adv[0] == 'a' || @adv[0] == 't') ? e.reverse : e
           e.take(@adv[1])
@@ -48,7 +48,8 @@ end
   '2d10',
   '2d10 + 1',
   '2d10 - 1',
-  '2d20a1 - 1'
+  '2d20a1 - 1',
+  '3d10t2',
 ]
   .each do |s|
     puts "-" * 80
