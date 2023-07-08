@@ -76,16 +76,19 @@ class Dice
 end
 
 [
-  '2d10',
-  '1d20',
+  #'2d10',
+  #'1d20',
+  #'2d20a1',
+  #'2d20d1',
   #'2d20a1',
   #'3d10t2',
+  '3d7', '2d10', '1d20',
 ]
   .each do |s|
     puts "-" * 80
     d = Dice.new(s)
     p d.s
-    #p d.spread
+    p d.spread
     p d.spread_percentage
     puts "---"
     p d.cumulate(0)
