@@ -25,6 +25,28 @@ class Dice
     @spread_percentage = compute_spread_percentage
   end
 
+  def cumulate(mod)
+
+    (0..23)
+      .inject({}) { |h, dc|
+        h[dc] = @spread.inject(0) { |s, (k, v)|
+          s = s + v if k.is_a?(Integer) && k >= (dc - mod)
+          s }
+        h }
+  end
+
+  def cumulate_percentage(mod)
+
+    c = @spread[:count]
+
+    cumulate(mod)
+      .inject({}) { |h, (k, v)|
+        h[k] = v.to_f / c * 100
+        h }
+  end
+
+  protected
+
   def compute_spread
 
     d = (1..@die).to_a
@@ -54,16 +76,22 @@ class Dice
 end
 
 [
-  '1d20',
   '2d10',
-  '2d20a1',
-  '3d10t2',
+  '1d20',
+  #'2d20a1',
+  #'3d10t2',
 ]
   .each do |s|
     puts "-" * 80
     d = Dice.new(s)
     p d.s
-    pp d.spread
-    pp d.spread_percentage
+    #p d.spread
+    p d.spread_percentage
+    puts "---"
+    p d.cumulate(0)
+    pp d.cumulate_percentage(0)
+    #puts "---"
+    #p d.cumulate(-1)
+    #pp d.cumulate_percentage(-1)
   end
 
