@@ -25,7 +25,7 @@ class Dice
     @spread_percentage = compute_spread_percentage
   end
 
-  def cumulate(mod)
+  def cumulate(mod=0)
 
     (0..23)
       .inject({}) { |h, dc|
@@ -35,7 +35,7 @@ class Dice
         h }
   end
 
-  def cumulate_percentage(mod)
+  def cumulate_percentage(mod=0)
 
     c = @spread[:count]
 
@@ -87,14 +87,25 @@ end
   .each do |s|
     puts "-" * 80
     d = Dice.new(s)
-    p d.s
-    p d.spread
-    p d.spread_percentage
-    puts "---"
-    p d.cumulate(0)
-    pp d.cumulate_percentage(0)
+    #p d.s
+    #p d.spread
+    #p d.spread_percentage
+    #puts "---"
+    #p d.cumulate(0)
+    #pp d.cumulate_percentage(0)
     #puts "---"
     #p d.cumulate(-1)
     #pp d.cumulate_percentage(-1)
+
+    h = {}
+    d.spread.inject(h) { |hh, (k, v)| (hh[k] ||= []) << v; hh }
+    d.spread_percentage.inject(h) { |hh, (k, v)| (hh[k] ||= []) << v; hh }
+    d.cumulate.inject(h) { |hh, (k, v)| (hh[k] ||= []) << v; hh }
+    d.cumulate_percentage.inject(h) { |hh, (k, v)| (hh[k] ||= []) << v; hh }
+    puts
+    puts d.s
+    h.keys.sort_by { |k| k.is_a?(Integer) ? ("%02d" % k) : k.to_s }.each do |k|
+      puts [ k, *h[k] ].collect(&:to_s).join("\t")
+    end
   end
 
