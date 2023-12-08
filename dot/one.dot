@@ -1,0 +1,33 @@
+
+graph abilities {
+  STR -- coo -- DEX;
+  STR -- phy -- CON;
+  STR -- for -- INT;
+  STR -- wil -- WIS;
+  STR -- pre -- CHA;
+  DEX -- bal -- CON;
+  DEX -- cun -- WIS;
+  DEX -- eva -- INT;
+  DEX -- per -- CHA;
+  CON -- res -- INT;
+  CON -- end -- WIS;
+  CON -- xxx -- CHA;
+  INT -- lea -- WIS;
+  INT -- wit -- CHA;
+  WIS -- men -- CHA;
+
+  { rank=same; STR coo DEX }
+  { rank=same; wil for phy eva bal cun }
+  { rank=same; INT CON }
+  { rank=same; pre wit WIS xxx per }
+
+ //{ rank=same; STR DEX CON INT WIS CHA }
+   //
+ //{ rank=same; STR DEX CON }
+ //{ rank=same; INT WIS CHA }
+   //
+ //{ rank=same; STR INT }
+ //{ rank=same; CON WIS }
+ //{ rank=same; DEX CHA }
+}
+
